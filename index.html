@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<title>Bombillo</title>
+		<!-- importa la libreria de jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	</head>
+
+	<body>
+
+	<div align="center">
+		<br><br>
+		<!-- Elemento checkbox -->
+		<label for="switch">Bombillo</label>		
+		<input type="checkbox" id="switch" />		
+	</div>
+
+	<script>
+
+	// Escucha cuando hay un cambio en el checkbox
+	$("#switch").change(function(){
+
+	    if ($(this).prop('checked')) {
+	    	/*
+	    	 Si el checkbox está marcado, llama la 
+	    	 función enviaDatoServidor(), 
+	    	 y la pasa por parametro el valor 1
+	    	*/
+	        console.log('On')
+	    	enviaDatoServidor(1)
+	    } else {
+	        console.log('Off')
+	        enviaServidor(0)
+	    }		
+
+	});
+
+	function enviaDatoServidor(estado)
+	{
+		// se conecta con el servidor, por POST, 
+		//y le envía el dato (1 o 0)
+
+		$.post( "procesa.php", { dato: estado })
+		  .done(function( data ) {
+		    console.log( "Todo Ok" );
+		  });
+	}
+
+
+	</script>
+	</body>
+</html>
